@@ -1,0 +1,20 @@
+{
+  "name": "tcontrol-traffic-ai",
+  "version": "1.0.0",
+  "description": "Smart Traffic Enforcement & Intelligence Platform - Realistic First Version",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "traffic-enforcement",
+    "computer-vision",
+    "anpr",
+    "alpr",
+    "red-light-camera",
+    "evidence-integrity"
+  ],
+  "author": "Antigravity Engineering",
+  "license": "MIT"
+}

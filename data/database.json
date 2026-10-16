@@ -1,0 +1,651 @@
+{
+  "cameras": [
+    {
+      "id": "CAM-LAG-01",
+      "name": "Victoria Island Main - Ozumba Mbadiwe & Adeola Odeku",
+      "location": "Lagos, Nigeria",
+      "latitude": 6.4312,
+      "longitude": 3.4206,
+      "status": "ACTIVE",
+      "ip_address": "192.168.10.42",
+      "fps": 30,
+      "resolution": "1920x1080",
+      "signal_controller": "SCATS-VI-094",
+      "red_grace_period_sec": 0.5,
+      "capabilities": [
+        "RED_LIGHT_RUNNING",
+        "ANPR",
+        "WRONG_WAY"
+      ],
+      "stop_line": {
+        "x1": 180,
+        "y1": 340,
+        "x2": 620,
+        "y2": 340
+      },
+      "last_heartbeat": "2026-10-16T15:45:00Z",
+      "clock_drift_ms": 4.2
+    },
+    {
+      "id": "CAM-ABJ-02",
+      "name": "Abuja Central - Shehu Shagari Way & Ahmadu Bello Way",
+      "location": "Abuja, FCT",
+      "latitude": 9.0618,
+      "longitude": 7.4951,
+      "status": "ACTIVE",
+      "ip_address": "192.168.12.18",
+      "fps": 30,
+      "resolution": "1920x1080",
+      "signal_controller": "NTCIP-ABJ-012",
+      "red_grace_period_sec": 0.5,
+      "capabilities": [
+        "RED_LIGHT_RUNNING",
+        "ANPR"
+      ],
+      "stop_line": {
+        "x1": 160,
+        "y1": 330,
+        "x2": 640,
+        "y2": 330
+      },
+      "last_heartbeat": "2026-10-16T15:44:30Z",
+      "clock_drift_ms": 2.8
+    },
+    {
+      "id": "CAM-IKJ-03",
+      "name": "Ikeja Junction - Mobolaji Bank Anthony & Isaac John St",
+      "location": "Ikeja, Lagos",
+      "latitude": 6.5925,
+      "longitude": 3.3563,
+      "status": "ACTIVE",
+      "ip_address": "192.168.14.77",
+      "fps": 25,
+      "resolution": "1920x1080",
+      "signal_controller": "SCATS-IKJ-044",
+      "red_grace_period_sec": 0.5,
+      "capabilities": [
+        "RED_LIGHT_RUNNING",
+        "ANPR",
+        "BUS_LANE"
+      ],
+      "stop_line": {
+        "x1": 200,
+        "y1": 350,
+        "x2": 600,
+        "y2": 350
+      },
+      "last_heartbeat": "2026-10-16T15:44:15Z",
+      "clock_drift_ms": 6.1
+    },
+    {
+      "id": "CAM-LEK-04",
+      "name": "Lekki Phase 1 - Admiralty Way & Tollgate Access",
+      "location": "Lekki, Lagos",
+      "latitude": 6.4474,
+      "longitude": 3.4731,
+      "status": "DEGRADED",
+      "ip_address": "192.168.16.10",
+      "fps": 20,
+      "resolution": "1920x1080",
+      "signal_controller": "SCATS-LEK-102",
+      "red_grace_period_sec": 0.5,
+      "capabilities": [
+        "ANPR"
+      ],
+      "stop_line": {
+        "x1": 190,
+        "y1": 330,
+        "x2": 610,
+        "y2": 330
+      },
+      "last_heartbeat": "2026-10-16T15:40:00Z",
+      "clock_drift_ms": 18.4
+    }
+  ],
+  "vehicle_observations": [
+    {
+      "id": "OBS-89201",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "LND-492-AA",
+      "plate_confidence": 0.964,
+      "plate_char_scores": [
+        0.99,
+        0.98,
+        0.97,
+        0.96,
+        0.95,
+        0.96,
+        0.96,
+        0.94
+      ],
+      "vehicle_class": "Sedan (Toyota Camry, Metallic Silver)",
+      "speed_kmh": 54,
+      "observed_at": "2026-10-16T14:22:18.410Z",
+      "lane": 2,
+      "signal_state": "RED",
+      "red_elapsed_sec": 1.84,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-89202",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "ABC-123-XY",
+      "plate_confidence": 0.912,
+      "plate_char_scores": [
+        0.94,
+        0.92,
+        0.9,
+        0.91,
+        0.92,
+        0.91,
+        0.89,
+        0.9
+      ],
+      "vehicle_class": "SUV (Honda CR-V, Dark Blue)",
+      "speed_kmh": 49,
+      "observed_at": "2026-10-16T14:35:45.120Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 2.15,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-89203",
+      "camera_id": "CAM-ABJ-02",
+      "plate_text": "FST-881-KD",
+      "plate_confidence": 0.985,
+      "plate_char_scores": [
+        0.99,
+        0.99,
+        0.98,
+        0.98,
+        0.99,
+        0.98,
+        0.99,
+        0.98
+      ],
+      "vehicle_class": "Emergency Ambulance (Toyota HiAce, White/Red)",
+      "speed_kmh": 68,
+      "observed_at": "2026-10-16T13:10:04.880Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 4.1,
+      "requires_review": false
+    },
+    {
+      "id": "OBS-89204",
+      "camera_id": "CAM-IKJ-03",
+      "plate_text": "KJA-719-XP",
+      "plate_confidence": 0.952,
+      "plate_char_scores": [
+        0.96,
+        0.96,
+        0.95,
+        0.95,
+        0.94,
+        0.96,
+        0.95,
+        0.95
+      ],
+      "vehicle_class": "Sedan (Mercedes-Benz C200, Black)",
+      "speed_kmh": 58,
+      "observed_at": "2026-10-16T12:05:12.330Z",
+      "lane": 2,
+      "signal_state": "RED",
+      "red_elapsed_sec": 3.4,
+      "requires_review": false
+    },
+    {
+      "id": "OBS-89205",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "EKY-305-BD",
+      "plate_confidence": 0.724,
+      "plate_char_scores": [
+        0.81,
+        0.7,
+        0.68,
+        0.74,
+        0.72,
+        0.75,
+        0.69,
+        0.7
+      ],
+      "vehicle_class": "Commercial Minibus (Yellow Danfo)",
+      "speed_kmh": 36,
+      "observed_at": "2026-10-16T15:02:11.110Z",
+      "lane": 3,
+      "signal_state": "GREEN",
+      "red_elapsed_sec": 0,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-89206",
+      "camera_id": "CAM-ABJ-02",
+      "plate_text": "RBC-401-AA",
+      "plate_confidence": 0.978,
+      "plate_char_scores": [
+        0.98,
+        0.98,
+        0.97,
+        0.98,
+        0.97,
+        0.98,
+        0.98,
+        0.98
+      ],
+      "vehicle_class": "SUV (Toyota Prado, Pearl White)",
+      "speed_kmh": 42,
+      "observed_at": "2026-10-16T15:15:33.400Z",
+      "lane": 2,
+      "signal_state": "GREEN",
+      "red_elapsed_sec": 0,
+      "requires_review": false
+    }
+  ],
+  "evidence_packages": [
+    {
+      "id": "EVD-2026-0001",
+      "observation_id": "OBS-89201",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "a4b7f329e1d882fa4bc1095941910248a34bbcc9274519faee2490b79780cb52",
+      "created_at": "2026-10-16T14:22:19.000Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-16T14:22:17.650Z",
+          "signal": "RED (+1.08s)",
+          "vehicle_distance_to_line_m": 8.5,
+          "description": "Vehicle approaching stop line. Traffic signal confirms RED for 1.08s."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-16T14:22:18.410Z",
+          "signal": "RED (+1.84s)",
+          "vehicle_distance_to_line_m": -1.2,
+          "description": "Front axle and centroid crossing calibrated stop line while signal is RED."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-16T14:22:19.320Z",
+          "signal": "RED (+2.75s)",
+          "vehicle_distance_to_line_m": -14.6,
+          "description": "Vehicle fully traversing the intersection during continuous RED phase."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-16T14:22:18.410Z",
+          "plate_text": "LND-492-AA",
+          "confidence": 0.964,
+          "description": "Cropped bounding box with character isolation and OCR matrix."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 1.84,
+        "violation_margin_sec": 1.34,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-0002",
+      "observation_id": "OBS-89202",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "c8849b67f190e241c0ea5091763901bcf8311ab352109e451b69f88c7f5b3310",
+      "created_at": "2026-10-16T14:35:46.000Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-16T14:35:44.200Z",
+          "signal": "RED (+1.23s)",
+          "vehicle_distance_to_line_m": 10.2,
+          "description": "Vehicle entering sensor zone. Signal confirmed RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-16T14:35:45.120Z",
+          "signal": "RED (+2.15s)",
+          "vehicle_distance_to_line_m": -0.8,
+          "description": "Vehicle crossing stop line at 49 km/h during RED signal."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-16T14:35:46.040Z",
+          "signal": "RED (+3.07s)",
+          "vehicle_distance_to_line_m": -12.4,
+          "description": "Vehicle continuing through intersection."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-16T14:35:45.120Z",
+          "plate_text": "ABC-123-XY",
+          "confidence": 0.912,
+          "description": "Cropped plate bounding box."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 2.15,
+        "violation_margin_sec": 1.65,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-0003",
+      "observation_id": "OBS-89203",
+      "camera_id": "CAM-ABJ-02",
+      "sha256_hash": "e932b137fc17b44589d9010488f28c4608c73c21a419eb310928e4695e92c69e",
+      "created_at": "2026-10-16T13:10:05.500Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-16T13:10:03.900Z",
+          "signal": "RED (+3.12s)",
+          "vehicle_distance_to_line_m": 12,
+          "description": "Ambulance approaching with emergency flashing lights active."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-16T13:10:04.880Z",
+          "signal": "RED (+4.10s)",
+          "vehicle_distance_to_line_m": -1.5,
+          "description": "Emergency vehicle transiting through intersection."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-16T13:10:05.700Z",
+          "signal": "RED (+4.92s)",
+          "vehicle_distance_to_line_m": -18,
+          "description": "Clearing intersection on emergency run."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-16T13:10:04.880Z",
+          "plate_text": "FST-881-KD",
+          "confidence": 0.985,
+          "description": "Government ambulance registered identifier."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 4.1,
+        "violation_margin_sec": 3.6,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-0004",
+      "observation_id": "OBS-89204",
+      "camera_id": "CAM-IKJ-03",
+      "sha256_hash": "7b0a884efcf91253018274092bb59419280145be84a719281e0954b1f920da62",
+      "created_at": "2026-10-16T12:05:13.000Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-16T12:05:11.400Z",
+          "signal": "RED (+2.47s)",
+          "vehicle_distance_to_line_m": 9,
+          "description": "Vehicle approaching at high speed. Signal RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-16T12:05:12.330Z",
+          "signal": "RED (+3.40s)",
+          "vehicle_distance_to_line_m": -1,
+          "description": "Vehicle crossing stop line at 58 km/h."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-16T12:05:13.200Z",
+          "signal": "RED (+4.27s)",
+          "vehicle_distance_to_line_m": -16.5,
+          "description": "Full traversal through intersection."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-16T12:05:12.330Z",
+          "plate_text": "KJA-719-XP",
+          "confidence": 0.952,
+          "description": "Clean plate reading verified."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 3.4,
+        "violation_margin_sec": 2.9,
+        "integrity_verified": true
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "CASE-1001",
+      "case_reference": "TRF-DEMO-0001",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-89201",
+      "evidence_package_id": "EVD-2026-0001",
+      "vehicle_plate": "LND-492-AA",
+      "vehicle_class": "Sedan (Toyota Camry, Metallic Silver)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.964,
+      "offence_confidence": 0.942,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 1.84,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-16T14:22:19Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
+      "id": "CASE-1002",
+      "case_reference": "TRF-DEMO-0002",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-89202",
+      "evidence_package_id": "EVD-2026-0002",
+      "vehicle_plate": "ABC-123-XY",
+      "vehicle_class": "SUV (Honda CR-V, Dark Blue)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.912,
+      "offence_confidence": 0.925,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 2.15,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-16T14:35:46Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
+      "id": "CASE-1003",
+      "case_reference": "TRF-DEMO-0003",
+      "camera_id": "CAM-ABJ-02",
+      "observation_id": "OBS-89203",
+      "evidence_package_id": "EVD-2026-0003",
+      "vehicle_plate": "FST-881-KD",
+      "vehicle_class": "Emergency Ambulance (Toyota HiAce, White/Red)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.985,
+      "offence_confidence": 0.96,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 4.1,
+      "grace_period_threshold_sec": 0.5,
+      "status": "REJECTED_LAWFUL_DISMISSAL",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-16T13:10:05Z",
+      "decision": "REJECTED",
+      "decision_reason": "Statutory Emergency Vehicle Exemption: Active emergency ambulance operating with flashing visual distress beacon. Exonerated under Traffic Safety Act Section 14.",
+      "decided_at": "2026-10-16T13:25:10Z",
+      "notice_reference": null
+    },
+    {
+      "id": "CASE-1004",
+      "case_reference": "TRF-DEMO-0004",
+      "camera_id": "CAM-IKJ-03",
+      "observation_id": "OBS-89204",
+      "evidence_package_id": "EVD-2026-0004",
+      "vehicle_plate": "KJA-719-XP",
+      "vehicle_class": "Sedan (Mercedes-Benz C200, Black)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.952,
+      "offence_confidence": 0.955,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 3.4,
+      "grace_period_threshold_sec": 0.5,
+      "status": "ENFORCEMENT_NOTICE_ISSUED",
+      "assigned_reviewer": "Inspector M. Danjuma #3120",
+      "created_at": "2026-10-16T12:05:13Z",
+      "decision": "APPROVED",
+      "decision_reason": "Clear violation verified. Stop line crossed 3.40 seconds into confirmed RED light. No lawful exemption.",
+      "decided_at": "2026-10-16T12:30:00Z",
+      "notice_reference": "NOT-2026-0842"
+    }
+  ],
+  "enforcement_notices": [
+    {
+      "id": "NOT-2026-0842",
+      "case_id": "CASE-1004",
+      "case_reference": "TRF-DEMO-0004",
+      "notice_reference": "NOT-2026-0842",
+      "issuing_authority": "State Traffic Management & Automated Enforcement Agency (STMAEA)",
+      "issuing_officer": "Inspector M. Danjuma",
+      "badge_number": "STMAEA-3120",
+      "vehicle_plate": "KJA-719-XP",
+      "offence_description": "Failure to obey red light traffic signal contrary to Section 22(1) Road Traffic Regulations",
+      "incident_location": "Ikeja Junction - Mobolaji Bank Anthony & Isaac John St",
+      "incident_time": "2026-10-16T12:05:12Z",
+      "penalty_amount_ngn": 35000,
+      "penalty_amount_usd": 45,
+      "payment_reference": "PAY-STMAEA-8841-90",
+      "payment_status": "UNPAID",
+      "issued_at": "2026-10-16T12:35:00Z",
+      "due_date": "2026-11-13T23:59:59Z",
+      "appeal_window_days": 28,
+      "evidence_verification_url": "https://tcontrol.traffic.gov.ng/verify/NOT-2026-0842"
+    }
+  ],
+  "appeals": [
+    {
+      "id": "APP-2026-0041",
+      "case_id": "CASE-1004",
+      "case_reference": "TRF-DEMO-0004",
+      "notice_reference": "NOT-2026-0842",
+      "vehicle_plate": "KJA-719-XP",
+      "appellant_name": "Tunde Bakare",
+      "grounds": "EMERGENCY_MEDICAL_ESCORT",
+      "submitted_at": "2026-10-16T14:10:00Z",
+      "explanation": "Driver was conveying an unconscious patient suffering cardiac failure to Lagos State University Teaching Hospital (LASUTH) emergency room. Hospital admission report attached.",
+      "supporting_documents": [
+        "LASUTH_Emergency_Triage_Admission_161026.pdf"
+      ],
+      "status": "UNDER_ADJUDICATION",
+      "adjudicator_notes": "Hospital triage timestamp matches camera timestamp within 8 minutes. Awaiting formal medical confirmation.",
+      "resolution": null,
+      "decided_at": null
+    }
+  ],
+  "audit_logs": [
+    {
+      "id": "AUD-MVB4ASMD-632",
+      "user": "Reviewer Officer",
+      "role": "REVIEW_OFFICER",
+      "action": "VERIFY_EVIDENCE_HASH",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-0001",
+      "details": "Verified SHA-256 digest: a4b7f329e1d882fa4bc1095941910248a34bbcc9274519faee2490b79780cb52. Result: VALID",
+      "timestamp": "2026-10-16T15:23:32.582Z"
+    },
+    {
+      "id": "AUD-001",
+      "user": "Officer B. Ojo (#4409)",
+      "role": "REVIEW_OFFICER",
+      "action": "LOGIN",
+      "target_entity": "SYSTEM",
+      "target_id": "AUTH-SESSION-9921",
+      "details": "Authenticated from terminal station 10.4.1.84",
+      "timestamp": "2026-10-16T13:00:15Z"
+    },
+    {
+      "id": "AUD-002",
+      "user": "Officer B. Ojo (#4409)",
+      "role": "REVIEW_OFFICER",
+      "action": "CASE_INSPECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-0003",
+      "details": "Inspected multi-frame evidence package and SHA-256 hash",
+      "timestamp": "2026-10-16T13:20:05Z"
+    },
+    {
+      "id": "AUD-003",
+      "user": "Officer B. Ojo (#4409)",
+      "role": "REVIEW_OFFICER",
+      "action": "CASE_REJECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-0003",
+      "details": "Dismissed violation: Emergency ambulance with active flashers",
+      "timestamp": "2026-10-16T13:25:10Z"
+    },
+    {
+      "id": "AUD-004",
+      "user": "Inspector M. Danjuma (#3120)",
+      "role": "SUPERVISOR",
+      "action": "CASE_APPROVED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-0004",
+      "details": "Approved red-light violation. Initiated notice NOT-2026-0842",
+      "timestamp": "2026-10-16T12:30:00Z"
+    },
+    {
+      "id": "AUD-005",
+      "user": "System Watchdog",
+      "role": "AUTOMATED_SERVICE",
+      "action": "EVIDENCE_INTEGRITY_CHECK",
+      "target_entity": "EVIDENCE_PACKAGE",
+      "target_id": "ALL_ACTIVE",
+      "details": "Verified 4 cryptographic SHA-256 digests. 0 mismatches detected.",
+      "timestamp": "2026-10-16T15:00:00Z"
+    }
+  ],
+  "users_and_roles": [
+    {
+      "id": "USR-01",
+      "username": "bojo",
+      "full_name": "Officer Babatunde Ojo",
+      "role": "REVIEW_OFFICER",
+      "badge_number": "STMAEA-4409",
+      "agency": "State Traffic Management Agency",
+      "active": true
+    },
+    {
+      "id": "USR-02",
+      "username": "mdanjuma",
+      "full_name": "Inspector Mohammed Danjuma",
+      "role": "SUPERVISOR",
+      "badge_number": "STMAEA-3120",
+      "agency": "State Traffic Management Agency",
+      "active": true
+    },
+    {
+      "id": "USR-03",
+      "username": "admin",
+      "full_name": "Chief Engineer C. Okon",
+      "role": "SYS_ADMIN",
+      "badge_number": "HQ-ADMIN-01",
+      "agency": "Traffic Enforcement Directorate",
+      "active": true
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TControl — AI Traffic Enforcement & Intelligence Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚦</text></svg>">
+</head>
+<body>
+  <!-- Global App Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      </div>
+      <div class="brand-title">
+        TControl
+        <span class="brand-badge">PILOT V1 · SHADOW MODE</span>
+      </div>
+    </div>
+
+    <div class="header-meta">
+      <div class="meta-status-pill">
+        <div class="status-dot"></div>
+        <span style="color: var(--text-muted);">NTP DRIFT:</span>
+        <span style="color: var(--traffic-green); font-weight: 700;">+3.8ms</span>
+      </div>
+
+      <div class="meta-status-pill">
+        <span id="live-clock" style="color: #fff; font-weight: 600;">2026-10-16 15:00:00 UTC</span>
+      </div>
+
+      <div class="officer-badge">
+        <div class="officer-avatar">BO</div>
+        <div class="officer-info">
+          <span class="officer-name">Officer B. Ojo</span>
+          <span class="officer-role">STMAEA-4409 · REVIEW OFFICER</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- App Main Container -->
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar">
+      <div class="nav-section-title">Enforcement Command</div>
+      <ul class="nav-list">
+        <li>
+          <a class="nav-item active" data-view="dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+            Operations Command
+          </a>
+        </li>
+        <li>
+          <a class="nav-item" data-view="simulator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            AI Violation Simulator
+          </a>
+        </li>
+        <li>
+          <a class="nav-item" data-view="review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Case Adjudication
+            <span class="nav-counter alert" id="nav-review-badge">2</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-section-title">Optical & Sensor Grid</div>
+      <ul class="nav-list">
+        <li>
+          <a class="nav-item" data-view="cameras">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Camera Management
+          </a>
+        </li>
+        <li>
+          <a class="nav-item" data-view="observations">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            Vehicle Observations
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-section-title">Due Process & Agency</div>
+      <ul class="nav-list">
+        <li>
+          <a class="nav-item" data-view="notices">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Enforcement Notices
+          </a>
+        </li>
+        <li>
+          <a class="nav-item" data-view="appeals">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            Appeals & Tribunals
+            <span class="nav-counter" id="nav-appeals-badge">1</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-item" data-view="audit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Immutable Audit Trail
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="quick-stats-box">
+          <div class="quick-stats-label">Cryptographic Integrity</div>
+          <div class="quick-stats-value">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            SHA-256 Intact (100%)
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Dynamic Workspace Container -->
+    <main class="app-content" id="view-container">
+      <!-- Injected by app.js -->
+    </main>
+  </div>
+
+  <!-- Modals & Toasts Containers -->
+  <div id="modal-container"></div>
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Core Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
