@@ -74,6 +74,76 @@ const App = {
     }
   },
 
+  openGuideModal() {
+    const modal = document.getElementById('modal-container');
+    modal.innerHTML = `
+      <div class="modal-backdrop open" id="app-modal">
+        <div class="modal-dialog" style="max-width: 750px;">
+          <div class="modal-header">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 24px;">🗺️</span>
+              <div>
+                <h3 class="modal-title" style="margin: 0;">Platform Operations Map & User Guide</h3>
+                <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">HOW TO DEMONSTRATE & OPERATE TCONTROL</div>
+              </div>
+            </div>
+            <button class="modal-close" onclick="App.closeModal()">&times;</button>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; font-size: 13px;">
+            <!-- Step 1 -->
+            <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-medium); border-left: 4px solid var(--accent-cyan); border-radius: var(--radius-md); padding: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="color: #fff; font-size: 14px;">1. Trigger a Violation in the AI Simulator</strong>
+                <button class="btn btn-secondary" style="padding: 3px 8px; font-size: 11px;" onclick="App.closeModal(); App.loadView('simulator');">Go to Simulator &rarr;</button>
+              </div>
+              <p style="color: var(--text-muted); line-height: 1.5;">
+                Navigate to <strong>"AI Violation Simulator"</strong> in the left sidebar. Click <strong>"Cycle Traffic Light"</strong> until the signal is RED, then click <strong>"Trigger Red-Light Runner"</strong>. Watch the AI tracker detect the stop-line crossing and automatically create a real case in your queue.
+              </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-medium); border-left: 4px solid var(--traffic-amber); border-radius: var(--radius-md); padding: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="color: #fff; font-size: 14px;">2. Review & Inspect Evidence as an Officer</strong>
+                <button class="btn btn-secondary" style="padding: 3px 8px; font-size: 11px;" onclick="App.closeModal(); App.loadView('review');">Open Review Queue &rarr;</button>
+              </div>
+              <p style="color: var(--text-muted); line-height: 1.5;">
+                Go to <strong>"Case Adjudication"</strong>. Click through the 4 certified frames: <code>F1 Approach</code>, <code>F2 Crossing</code>, <code>F3 Transit</code>, and <code>F4 Plate OCR</code>. Click <strong>"Recalculate & Verify SHA-256 Hash"</strong> to prove zero evidence tampering. Then click <strong>"Confirm Violation & Issue Notice"</strong>.
+              </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-medium); border-left: 4px solid var(--traffic-green); border-radius: var(--radius-md); padding: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="color: #fff; font-size: 14px;">3. View & Print Official Citation Notices</strong>
+                <button class="btn btn-secondary" style="padding: 3px 8px; font-size: 11px;" onclick="App.closeModal(); App.loadView('notices');">View Notices &rarr;</button>
+              </div>
+              <p style="color: var(--text-muted); line-height: 1.5;">
+                In <strong>"Enforcement Notices"</strong>, click <strong>"View & Print Notice"</strong> on any citation to see the official Notice of Intended Prosecution with legal citation text, certified photographic proof strip, fine amount, and QR verification.
+              </p>
+            </div>
+
+            <!-- Step 4 -->
+            <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-medium); border-left: 4px solid var(--accent-blue); border-radius: var(--radius-md); padding: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="color: #fff; font-size: 14px;">4. Run Video Batch Analysis with Python AI Worker</strong>
+                <button class="btn btn-secondary" style="padding: 3px 8px; font-size: 11px;" onclick="App.closeModal(); App.loadView('footage');">Open Footage Lab &rarr;</button>
+              </div>
+              <p style="color: var(--text-muted); line-height: 1.5;">
+                In <strong>"Footage Lab & Upload"</strong>, click <strong>"Execute Video Analysis Pipeline"</strong>. The dashboard calls the Python FastAPI service on port <code>8000</code>, which tracks vehicle movement, runs OCR, and registers detected violations.
+              </p>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+            <button class="btn btn-primary" onclick="App.closeModal()">Got it, Let's Start!</button>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
   updateClock() {
     const el = document.getElementById('live-clock');
     if (el) {
