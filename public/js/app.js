@@ -236,6 +236,9 @@ const App = {
       case 'notices':
         this.renderNotices();
         break;
+      case 'citizen':
+        this.renderCitizenPortal();
+        break;
       case 'appeals':
         this.renderAppeals();
         break;
@@ -1255,9 +1258,14 @@ const App = {
                       <span class="badge ${n.payment_status === 'UNPAID' ? 'badge-amber' : 'badge-green'}">${n.payment_status}</span>
                     </td>
                     <td>
-                      <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="App.openNoticePreview('${n.id}')">
-                        View & Print Notice
-                      </button>
+                      <div style="display: flex; gap: 6px;">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="App.openNoticePreview('${n.id}')">
+                          Notice PDF
+                        </button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; border-color: var(--accent-cyan); color: var(--accent-cyan);" onclick="App.renderCitizenPortal('${n.notice_reference}')">
+                          Citizen QR View
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 `).join('')}
@@ -1867,6 +1875,318 @@ const App = {
       if (this.currentView === 'dashboard') this.renderDashboard();
     } catch (e) {
       this.showToast('Failed to create manual incident: ' + e.message, 'danger');
+    }
+  },
+
+  // --- VIEW 11: PUBLIC CITIZEN VERIFICATION & DUE PROCESS PORTAL (Option C) ---
+  async renderCitizenPortal(defaultRef = 'NOT-2026-0842') {
+    const container = document.getElementById('view-container');
+    try {
+      const data = await API.publicVerifyNotice(defaultRef).catch(() => null);
+      const n = data ? data.notice : null;
+      const c = data ? data.case : null;
+      const evd = data ? data.evidence : null;
+      const cam = data ? data.camera : null;
+      const appeal = data ? data.appeal : null;
+
+      container.innerHTML = `
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Citizen Automated Citation Verification Portal</h1>
+            <p>Official Public Due Process Access Point for Notice Reference: <strong style="color: var(--accent-cyan); font-family: var(--font-mono);">${defaultRef}</strong></p>
+          </div>
+          <div class="view-actions">
+            <div style="display: flex; gap: 8px;">
+              <input type="text" id="citizen-search-ref" value="${defaultRef}" placeholder="Enter Notice Ref..." class="form-input" style="width: 200px;" />
+              <button class="btn btn-primary" onclick="App.renderCitizenPortal(document.getElementById('citizen-search-ref').value)">Verify</button>
+            </div>
+          </div>
+        </div>
+
+        ${!n ? `
+          <div class="panel" style="text-align: center; padding: 48px 24px;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--traffic-amber)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <h3 style="font-family: var(--font-heading); color: #fff; margin-top: 14px;">Citation Notice Not Found</h3>
+            <p style="color: var(--text-muted); font-size: 13px; max-width: 480px; margin: 8px auto 18px;">Please verify the exact notice reference printed on your Notice of Intended Prosecution (e.g. <code>NOT-2026-0842</code>).</p>
+          </div>
+        ` : `
+          <!-- Citizen Main View Container -->
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+            <div>
+              <!-- Citation Summary Card -->
+              <div class="panel" style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                  <div>
+                    <span class="badge ${n.payment_status === 'PAID' ? 'badge-green' : (n.payment_status === 'HELD_UNDER_APPEAL' ? 'badge-amber' : 'badge-red')}">
+                      Status: ${n.payment_status}
+                    </span>
+                    <h2 style="font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: #fff; margin-top: 8px;">
+                      Alleged Red-Light Infringement
+                    </h2>
+                    <div style="font-size: 13px; color: var(--text-dim);">${cam ? cam.location : 'Signalized Intersection'} · ${new Date(n.incident_time).toLocaleString()}</div>
+                  </div>
+                  <div style="text-align: right;">
+                    <span class="plate-tag" style="font-size: 15px;">${n.vehicle_plate}</span>
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-cyan); margin-top: 6px;">Ref: ${n.notice_reference}</div>
+                  </div>
+                </div>
+
+                <div style="background: var(--bg-surface-elevated); padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px;">
+                  <div>
+                    <span style="color: var(--text-dim); display: block;">Red Light Duration:</span>
+                    <strong style="color: var(--traffic-red); font-family: var(--font-mono); font-size: 14px;">+${c ? c.signal_time_into_red_sec.toFixed(2) : '3.40'}s into RED</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--text-dim); display: block;">Grace Threshold:</span>
+                    <strong style="color: #fff; font-family: var(--font-mono); font-size: 14px;">0.50 Seconds</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--text-dim); display: block;">Civil Penalty Amount:</span>
+                    <strong style="color: var(--traffic-amber); font-family: var(--font-mono); font-size: 14px;">₦${n.penalty_amount_ngn.toLocaleString()} ($${n.penalty_amount_usd})</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4-Frame Photographic Proof Strip -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    Certified Photometric Evidence Strip
+                  </div>
+                  <span class="badge badge-green" style="font-size: 10px;">SHA-256 Tamper-Free Sealed</span>
+                </div>
+
+                <div class="frames-strip" style="background: transparent; padding: 0;">
+                  <div class="frame-thumbnail">
+                    <div class="frame-preview-box">
+                      <span class="frame-badge">F1: APPROACH</span>
+                    </div>
+                    <div class="frame-label">Stop-Line Approach</div>
+                    <div class="frame-meta">${evd && evd.frames ? evd.frames.approach.signal : 'RED (+2.47s)'}</div>
+                  </div>
+
+                  <div class="frame-thumbnail active">
+                    <div class="frame-preview-box">
+                      <span class="frame-badge" style="background: var(--traffic-red);">F2: CROSSING</span>
+                    </div>
+                    <div class="frame-label">Line Infringement</div>
+                    <div class="frame-meta" style="color: var(--traffic-red);">${evd && evd.frames ? evd.frames.crossing.signal : 'RED (+3.40s)'}</div>
+                  </div>
+
+                  <div class="frame-thumbnail">
+                    <div class="frame-preview-box">
+                      <span class="frame-badge">F3: TRANSIT</span>
+                    </div>
+                    <div class="frame-label">Traversal</div>
+                    <div class="frame-meta">${evd && evd.frames ? evd.frames.transit.signal : 'RED (+4.27s)'}</div>
+                  </div>
+
+                  <div class="frame-thumbnail">
+                    <div class="frame-preview-box">
+                      <span class="frame-badge" style="background: var(--accent-cyan); color: #000;">F4: PLATE</span>
+                    </div>
+                    <div class="frame-label">Plate OCR Crop</div>
+                    <div class="frame-meta">${n.vehicle_plate}</div>
+                  </div>
+                </div>
+
+                <div style="margin-top: 16px; background: #070c16; padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-medium); font-size: 11px; font-family: var(--font-mono);">
+                  <div style="color: var(--text-dim); margin-bottom: 4px;">CRYPTOGRAPHIC EVIDENCE DIGEST (SHA-256):</div>
+                  <div style="color: var(--accent-cyan); word-break: break-all;">${evd ? evd.sha256_hash : '7b0a884efcf91253018274092bb59419280145be84a719281e0954b1f920da62'}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Citizen Action Sidebar -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <!-- Settlement Box -->
+              <div class="panel">
+                <div class="panel-title" style="font-size: 15px; margin-bottom: 12px;">Option 1: Settle Penalty</div>
+                ${n.payment_status === 'PAID' ? `
+                  <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid var(--traffic-green); border-radius: var(--radius-md); padding: 16px; text-align: center;">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--traffic-green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <div style="font-weight: 700; color: var(--traffic-green); margin-top: 8px;">PENALTY SETTLED IN FULL</div>
+                    <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Receipt: ${n.payment_receipt || 'REC-2026-99214'}</div>
+                    <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Paid: ${new Date(n.paid_at || Date.now()).toLocaleDateString()}</div>
+                  </div>
+                ` : `
+                  <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
+                    Settle the statutory fine online to discharge liability without court proceedings.
+                  </p>
+                  <button class="btn btn-success" style="width: 100%; justify-content: center; padding: 12px; font-size: 14px;" onclick="App.openCitizenPayModal('${n.notice_reference}', ${n.penalty_amount_ngn})">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    Pay ₦${n.penalty_amount_ngn.toLocaleString()} Online
+                  </button>
+                `}
+              </div>
+
+              <!-- Contest / Due Process Box -->
+              <div class="panel">
+                <div class="panel-title" style="font-size: 15px; margin-bottom: 12px;">Option 2: Contest Citation</div>
+                ${appeal ? `
+                  <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid var(--traffic-amber); border-radius: var(--radius-md); padding: 14px;">
+                    <div style="font-weight: 700; color: var(--traffic-amber);">APPEAL REGISTERED</div>
+                    <div style="font-size: 12px; color: #fff; margin-top: 4px;">Reference: ${appeal.id}</div>
+                    <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Ground: ${appeal.grounds.replace(/_/g, ' ')}</div>
+                    <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 8px;">"${appeal.adjudicator_notes}"</div>
+                  </div>
+                ` : `
+                  <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
+                    If you were driving under an emergency, directed by a police officer, or your vehicle was stolen, submit a formal statutory appeal.
+                  </p>
+                  <button class="btn btn-secondary" style="width: 100%; justify-content: center; padding: 10px; font-size: 13px;" onclick="App.openCitizenAppealModal('${n.notice_reference}')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Submit Statutory Appeal
+                  </button>
+                `}
+              </div>
+            </div>
+          </div>
+        `}
+      `;
+    } catch (err) {
+      container.innerHTML = `<div class="panel" style="color: var(--traffic-red);">Verification error: ${err.message}</div>`;
+    }
+  },
+
+  openCitizenPayModal(noticeRef, amount) {
+    const modal = document.getElementById('modal-container');
+    modal.innerHTML = `
+      <div class="modal-backdrop open" id="app-modal">
+        <div class="modal-dialog" style="max-width: 480px;">
+          <div class="modal-header">
+            <h3 class="modal-title">Settle Civil Penalty Online</h3>
+            <button class="modal-close" onclick="App.closeModal()">&times;</button>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+            Payment Gateway Simulation for Citation Ref: <strong style="color: var(--accent-cyan);">${noticeRef}</strong>
+          </p>
+
+          <div style="background: var(--bg-surface-elevated); padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-medium); margin-bottom: 16px; text-align: center;">
+            <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase;">Total Statutory Due</div>
+            <div style="font-size: 26px; font-weight: 800; color: #fff; font-family: var(--font-mono); margin-top: 4px;">₦${amount.toLocaleString()}</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Payment Channel</label>
+            <select class="form-select" id="pay-channel">
+              <option value="DEBIT_CARD">Interswitch / Visa / Mastercard</option>
+              <option value="NIBSS_TRANSFER">Instant Bank Transfer</option>
+              <option value="USSD">Direct USSD Gateway (*737# / *901#)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Cardholder / Payer Name</label>
+            <input type="text" class="form-input" id="pay-name" value="Tunde Bakare" />
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="btn btn-secondary" onclick="App.closeModal()">Cancel</button>
+            <button class="btn btn-success" onclick="App.submitCitizenPay('${noticeRef}')">Authorize Payment</button>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  async submitCitizenPay(noticeRef) {
+    const method = document.getElementById('pay-channel').value;
+    try {
+      const res = await API.publicPayNotice({
+        notice_reference: noticeRef,
+        payment_method: method
+      });
+      this.closeModal();
+      this.showToast(`Payment Successful! Receipt: ${res.receipt_number}`, 'success');
+      this.renderCitizenPortal(noticeRef);
+    } catch (e) {
+      this.showToast('Payment failed: ' + e.message, 'danger');
+    }
+  },
+
+  openCitizenAppealModal(noticeRef) {
+    const modal = document.getElementById('modal-container');
+    modal.innerHTML = `
+      <div class="modal-backdrop open" id="app-modal">
+        <div class="modal-dialog" style="max-width: 580px;">
+          <div class="modal-header">
+            <h3 class="modal-title">Submit Statutory Due Process Appeal</h3>
+            <button class="modal-close" onclick="App.closeModal()">&times;</button>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+            Under Traffic Regulations Section 28, registered keepers can contest allegations on valid statutory grounds. Submitting an appeal <strong>suspends enforcement</strong> pending tribunal review.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label">Appellant Full Name</label>
+            <input type="text" class="form-input" id="appeal-name" placeholder="Full Name of Driver/Owner" />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Contact Email</label>
+              <input type="email" class="form-input" id="appeal-email" value="motorist@example.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Contact Phone</label>
+              <input type="tel" class="form-input" id="appeal-phone" value="08031234567" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Statutory Grounds of Appeal</label>
+            <select class="form-select" id="appeal-grounds">
+              <option value="MEDICAL_EMERGENCY">Medical Emergency (Conveying patient in acute distress to hospital)</option>
+              <option value="POLICE_DIRECTION">Directed through Red Signal by Traffic Police / Wardens on Duty</option>
+              <option value="STOLEN_VEHICLE">Vehicle Stolen or Cloned License Plate</option>
+              <option value="SOLD_PRIOR">Vehicle Sold / Transferred Prior to Infringement Date</option>
+              <option value="EMERGENCY_SERVICE">Official Emergency Service Vehicle Operating under Distress Lights</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Detailed Explanation of Circumstances</label>
+            <textarea class="form-textarea" id="appeal-explanation" rows="3" placeholder="Provide full details, hospital name, police station report, etc."></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="btn btn-secondary" onclick="App.closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="App.submitCitizenAppeal('${noticeRef}')">Submit Official Appeal</button>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  async submitCitizenAppeal(noticeRef) {
+    const name = document.getElementById('appeal-name').value;
+    const email = document.getElementById('appeal-email').value;
+    const phone = document.getElementById('appeal-phone').value;
+    const grounds = document.getElementById('appeal-grounds').value;
+    const explanation = document.getElementById('appeal-explanation').value;
+
+    if (!name) {
+      this.showToast('Please enter your full name', 'danger');
+      return;
+    }
+
+    try {
+      const res = await API.publicSubmitAppeal({
+        notice_reference: noticeRef,
+        appellant_name: name,
+        email,
+        phone,
+        grounds,
+        explanation
+      });
+      this.closeModal();
+      this.showToast(`Appeal ${res.appeal.id} registered! Enforcement held in abeyance.`, 'success');
+      this.refreshCounters();
+      this.renderCitizenPortal(noticeRef);
+    } catch (e) {
+      this.showToast('Appeal submission failed: ' + e.message, 'danger');
     }
   },
 

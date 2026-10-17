@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: tcontrol-web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - AI_SERVICE_URL=http://ai:8000
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - ai
+    networks:
+      - tcontrol-net
+
+  ai:
+    build:
+      context: .
+      dockerfile: Dockerfile.ai
+    container_name: tcontrol-ai
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - NODE_BACKEND_URL=http://web:3000
+    volumes:
+      - ./data:/app/data
+    networks:
+      - tcontrol-net
+
+networks:
+  tcontrol-net:
+    driver: bridge

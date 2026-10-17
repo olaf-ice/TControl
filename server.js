@@ -413,6 +413,104 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
+      // 9.5 Public Citizen Portal Endpoints (Verification, Settlement, and Appeals)
+      if (pathname.match(/^\/api\/public\/verify\/([^\/]+)$/) && method === 'GET') {
+        const ref = pathname.split('/')[4].toUpperCase();
+        const notice = db.enforcement_notices.find(n => n.notice_reference.toUpperCase() === ref || n.id.toUpperCase() === ref);
+        if (!notice) {
+          res.writeHead(404);
+          res.end(JSON.stringify({ error: 'Citation notice not found. Verify the reference code printed on your notice.' }));
+          return;
+        }
+        const caseRecord = db.cases.find(c => c.id === notice.case_id);
+        const evidence = caseRecord ? db.evidence_packages.find(e => e.id === caseRecord.evidence_package_id) : null;
+        const camera = caseRecord ? db.cameras.find(c => c.id === caseRecord.camera_id) : null;
+        const appeal = db.appeals.find(a => a.notice_reference === notice.notice_reference);
+
+        res.writeHead(200);
+        res.end(JSON.stringify({
+          notice,
+          case: caseRecord,
+          evidence,
+          camera: camera ? { name: camera.name, location: camera.location } : null,
+          appeal: appeal || null
+        }));
+        return;
+      }
+
+      if (pathname === '/api/public/pay' && method === 'POST') {
+        const body = await parseRequestBody(req);
+        const ref = (body.notice_reference || '').toUpperCase();
+        const notice = db.enforcement_notices.find(n => n.notice_reference.toUpperCase() === ref);
+        if (!notice) {
+          res.writeHead(404);
+          res.end(JSON.stringify({ error: 'Notice reference not found' }));
+          return;
+        }
+
+        notice.payment_status = 'PAID';
+        const receiptNo = `REC-2026-${Math.floor(Math.random() * 89000 + 10000)}`;
+        notice.payment_receipt = receiptNo;
+        notice.paid_at = new Date().toISOString();
+        notice.payment_method = body.payment_method || 'CARD_PAYMENT_GATEWAY';
+
+        logAudit(db, `Citizen (${notice.vehicle_plate})`, 'CITIZEN_PUBLIC', 'FINE_SETTLED_ONLINE', 'NOTICE', notice.notice_reference, `Settled civil penalty of ₦${notice.penalty_amount_ngn}. Receipt: ${receiptNo}`);
+        saveDB(db);
+
+        res.writeHead(200);
+        res.end(JSON.stringify({
+          success: true,
+          receipt_number: receiptNo,
+          amount_paid_ngn: notice.penalty_amount_ngn,
+          paid_at: notice.paid_at,
+          notice
+        }));
+        return;
+      }
+
+      if (pathname === '/api/public/appeal' && method === 'POST') {
+        const body = await parseRequestBody(req);
+        const ref = (body.notice_reference || '').toUpperCase();
+        const notice = db.enforcement_notices.find(n => n.notice_reference.toUpperCase() === ref);
+        if (!notice) {
+          res.writeHead(404);
+          res.end(JSON.stringify({ error: 'Notice reference not found' }));
+          return;
+        }
+
+        const appealId = `APP-2026-${Math.floor(Math.random() * 8900 + 1000)}`;
+        const newAppeal = {
+          id: appealId,
+          case_id: notice.case_id,
+          case_reference: notice.case_reference,
+          notice_reference: notice.notice_reference,
+          vehicle_plate: notice.vehicle_plate,
+          appellant_name: body.appellant_name || 'Registered Keeper',
+          contact_email: body.email || 'citizen@example.com',
+          contact_phone: body.phone || '080-0000-0000',
+          grounds: body.grounds || 'MEDICAL_EMERGENCY',
+          submitted_at: new Date().toISOString(),
+          explanation: body.explanation || 'Statutory dispute submitted via public citizen portal.',
+          supporting_documents: body.documents || ['Hospital_Or_Police_Proof.pdf'],
+          status: 'UNDER_ADJUDICATION',
+          adjudicator_notes: 'Citizen submitted statutory appeal. Penalty enforcement held in abeyance pending tribunal review.',
+          resolution: null,
+          decided_at: null
+        };
+        db.appeals.unshift(newAppeal);
+        notice.payment_status = 'HELD_UNDER_APPEAL';
+
+        logAudit(db, body.appellant_name || 'Citizen', 'CITIZEN_PUBLIC', 'APPEAL_REGISTERED', 'APPEAL', appealId, `Registered statutory appeal for notice ${notice.notice_reference}. Grounds: ${newAppeal.grounds}`);
+        saveDB(db);
+
+        res.writeHead(201);
+        res.end(JSON.stringify({
+          success: true,
+          appeal: newAppeal
+        }));
+        return;
+      }
+
       // 10. Live AI Detection Simulator Endpoint (Allows generating new realistic detections)
       if (pathname === '/api/simulate/detect' && method === 'POST') {
         const body = await parseRequestBody(req);

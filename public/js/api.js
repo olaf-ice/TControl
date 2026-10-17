@@ -119,6 +119,24 @@ const API = {
 
   getExportBundleUrl(caseId) {
     return `${this.baseUrl}/cases/${caseId}/export-bundle`;
+  },
+
+  publicVerifyNotice(ref) {
+    return this.request(`/public/verify/${encodeURIComponent(ref)}`);
+  },
+
+  publicPayNotice(paymentData) {
+    return this.request('/public/pay', {
+      method: 'POST',
+      body: JSON.stringify(paymentData)
+    });
+  },
+
+  publicSubmitAppeal(appealData) {
+    return this.request('/public/appeal', {
+      method: 'POST',
+      body: JSON.stringify(appealData)
+    });
   }
 };
 

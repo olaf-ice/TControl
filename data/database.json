@@ -104,6 +104,236 @@
   ],
   "vehicle_observations": [
     {
+      "id": "OBS-81703",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "LAG-319-XA",
+      "plate_confidence": 0.958,
+      "plate_char_scores": [
+        0.93,
+        0.98,
+        0.99,
+        0.94,
+        0.97,
+        0.93,
+        0.93,
+        0.99
+      ],
+      "vehicle_class": "Sedan (Toyota Corolla, Dark Grey)",
+      "speed_kmh": 37.5,
+      "observed_at": "2026-10-17T04:18:19.862Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 1.95,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-27551",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "LAG-319-XA",
+      "plate_confidence": 0.955,
+      "plate_char_scores": [
+        0.94,
+        0.96,
+        0.94,
+        0.95,
+        0.94,
+        0.94,
+        0.93,
+        0.95
+      ],
+      "vehicle_class": "Sedan (Toyota Corolla, Dark Grey)",
+      "speed_kmh": 37.5,
+      "observed_at": "2026-10-17T04:12:16.359Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 1.95,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-28585",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "LAG-319-XA",
+      "plate_confidence": 0.959,
+      "plate_char_scores": [
+        0.96,
+        0.95,
+        0.94,
+        0.98,
+        0.95,
+        0.99,
+        0.98,
+        0.98
+      ],
+      "vehicle_class": "Sedan (Toyota Corolla, Dark Grey)",
+      "speed_kmh": 37.5,
+      "observed_at": "2026-10-17T04:11:56.282Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 1.95,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-17580",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "ABJ-882-KW",
+      "plate_confidence": 0.949,
+      "plate_char_scores": [
+        0.97,
+        0.93,
+        0.93,
+        0.93,
+        0.95,
+        0.99,
+        0.99,
+        0.93
+      ],
+      "vehicle_class": "SUV (Dark Blue)",
+      "speed_kmh": 49,
+      "observed_at": "2026-10-17T04:11:20.121Z",
+      "lane": 2,
+      "signal_state": "RED",
+      "red_elapsed_sec": 0.5000000000000001,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-19913",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "LND-492-AA",
+      "plate_confidence": 0.957,
+      "plate_char_scores": [
+        0.92,
+        0.94,
+        0.93,
+        0.96,
+        0.92,
+        0.98,
+        0.94,
+        0.98
+      ],
+      "vehicle_class": "SUV (Dark Blue)",
+      "speed_kmh": 49,
+      "observed_at": "2026-10-17T04:09:47.077Z",
+      "lane": 2,
+      "signal_state": "RED",
+      "red_elapsed_sec": 0.5331999999999972,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-52372",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "LAG-551-ZZ",
+      "plate_confidence": 0.962,
+      "plate_char_scores": [
+        0.93,
+        0.94,
+        0.94,
+        0.93,
+        0.94,
+        0.98,
+        0.94,
+        0.94
+      ],
+      "vehicle_class": "SUV (Dark Blue)",
+      "speed_kmh": 63,
+      "observed_at": "2026-10-17T04:09:17.014Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 2.2165999999999975,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-68300",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "LND-492-AA",
+      "plate_confidence": 0.964,
+      "plate_char_scores": [
+        0.97,
+        0.93,
+        0.93,
+        0.95,
+        0.96,
+        0.93,
+        0.95,
+        0.98
+      ],
+      "vehicle_class": "Hatchback (White)",
+      "speed_kmh": 63,
+      "observed_at": "2026-10-17T04:09:15.453Z",
+      "lane": 2,
+      "signal_state": "RED",
+      "red_elapsed_sec": 2.2998000000000025,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-97263",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "ABC-123-XY",
+      "plate_confidence": 0.932,
+      "plate_char_scores": [
+        0.96,
+        0.96,
+        0.99,
+        0.95,
+        0.95,
+        0.96,
+        0.93,
+        0.92
+      ],
+      "vehicle_class": "Sedan (Black)",
+      "speed_kmh": 63,
+      "observed_at": "2026-10-17T04:09:13.559Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 2.266699999999998,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-27964",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "LND-492-AA",
+      "plate_confidence": 0.924,
+      "plate_char_scores": [
+        0.98,
+        0.96,
+        0.92,
+        0.96,
+        0.95,
+        0.93,
+        0.93,
+        0.96
+      ],
+      "vehicle_class": "Sedan (Black)",
+      "speed_kmh": 63,
+      "observed_at": "2026-10-17T04:09:07.651Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 2.116599999999998,
+      "requires_review": true
+    },
+    {
+      "id": "OBS-56635",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "LND-492-AA",
+      "plate_confidence": 0.955,
+      "plate_char_scores": [
+        0.93,
+        0.93,
+        0.94,
+        0.96,
+        0.95,
+        0.96,
+        0.95,
+        0.97
+      ],
+      "vehicle_class": "Sedan (Black)",
+      "speed_kmh": 63,
+      "observed_at": "2026-10-17T04:09:06.098Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 2.1665999999999985,
+      "requires_review": true
+    },
+    {
       "id": "OBS-86553",
       "camera_id": "CAM-LAG-01",
       "plate_text": "LAG-319-XA",
@@ -290,6 +520,456 @@
     }
   ],
   "evidence_packages": [
+    {
+      "id": "EVD-2026-5945",
+      "observation_id": "OBS-81703",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T04:18:19.879Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T04:18:18.662Z",
+          "signal": "RED (+1.15s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T04:18:19.462Z",
+          "signal": "RED (+1.95s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T04:18:19.862Z",
+          "signal": "RED (+2.85s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T04:18:19.462Z",
+          "plate_text": "LAG-319-XA",
+          "confidence": 0.958,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 1.95,
+        "violation_margin_sec": 1.45,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-6831",
+      "observation_id": "OBS-27551",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T04:12:16.360Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T04:12:15.160Z",
+          "signal": "RED (+1.15s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T04:12:15.960Z",
+          "signal": "RED (+1.95s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T04:12:16.360Z",
+          "signal": "RED (+2.85s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T04:12:15.960Z",
+          "plate_text": "LAG-319-XA",
+          "confidence": 0.955,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 1.95,
+        "violation_margin_sec": 1.45,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-1126",
+      "observation_id": "OBS-28585",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T04:11:56.285Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T04:11:55.082Z",
+          "signal": "RED (+1.15s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T04:11:55.882Z",
+          "signal": "RED (+1.95s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T04:11:56.282Z",
+          "signal": "RED (+2.85s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T04:11:55.882Z",
+          "plate_text": "LAG-319-XA",
+          "confidence": 0.959,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 1.95,
+        "violation_margin_sec": 1.45,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-5200",
+      "observation_id": "OBS-17580",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T04:11:20.122Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T04:11:18.921Z",
+          "signal": "RED (+-0.30s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T04:11:19.721Z",
+          "signal": "RED (+0.50s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T04:11:20.121Z",
+          "signal": "RED (+1.40s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T04:11:19.721Z",
+          "plate_text": "ABJ-882-KW",
+          "confidence": 0.949,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 0.5000000000000001,
+        "violation_margin_sec": 0,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-3308",
+      "observation_id": "OBS-19913",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T04:09:47.077Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T04:09:45.877Z",
+          "signal": "RED (+-0.27s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T04:09:46.677Z",
+          "signal": "RED (+0.53s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T04:09:47.077Z",
+          "signal": "RED (+1.43s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T04:09:46.677Z",
+          "plate_text": "LND-492-AA",
+          "confidence": 0.957,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 0.5331999999999972,
+        "violation_margin_sec": 0.03,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-6562",
+      "observation_id": "OBS-52372",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T04:09:17.015Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T04:09:15.814Z",
+          "signal": "RED (+1.42s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T04:09:16.614Z",
+          "signal": "RED (+2.22s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T04:09:17.014Z",
+          "signal": "RED (+3.12s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T04:09:16.614Z",
+          "plate_text": "LAG-551-ZZ",
+          "confidence": 0.962,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 2.2165999999999975,
+        "violation_margin_sec": 1.72,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-4259",
+      "observation_id": "OBS-68300",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T04:09:15.453Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T04:09:14.253Z",
+          "signal": "RED (+1.50s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T04:09:15.053Z",
+          "signal": "RED (+2.30s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T04:09:15.453Z",
+          "signal": "RED (+3.20s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T04:09:15.053Z",
+          "plate_text": "LND-492-AA",
+          "confidence": 0.964,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 2.2998000000000025,
+        "violation_margin_sec": 1.8,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-1427",
+      "observation_id": "OBS-97263",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T04:09:13.559Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T04:09:12.359Z",
+          "signal": "RED (+1.47s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T04:09:13.159Z",
+          "signal": "RED (+2.27s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T04:09:13.559Z",
+          "signal": "RED (+3.17s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T04:09:13.159Z",
+          "plate_text": "ABC-123-XY",
+          "confidence": 0.932,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 2.266699999999998,
+        "violation_margin_sec": 1.77,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-4918",
+      "observation_id": "OBS-27964",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T04:09:07.651Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T04:09:06.451Z",
+          "signal": "RED (+1.32s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T04:09:07.251Z",
+          "signal": "RED (+2.12s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T04:09:07.651Z",
+          "signal": "RED (+3.02s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T04:09:07.251Z",
+          "plate_text": "LND-492-AA",
+          "confidence": 0.924,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 2.116599999999998,
+        "violation_margin_sec": 1.62,
+        "integrity_verified": true
+      }
+    },
+    {
+      "id": "EVD-2026-7568",
+      "observation_id": "OBS-56635",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T04:09:06.119Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T04:09:04.901Z",
+          "signal": "RED (+1.37s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T04:09:05.702Z",
+          "signal": "RED (+2.17s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T04:09:06.102Z",
+          "signal": "RED (+3.07s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T04:09:05.702Z",
+          "plate_text": "LND-492-AA",
+          "confidence": 0.955,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 2.1665999999999985,
+        "violation_margin_sec": 1.67,
+        "integrity_verified": true
+      }
+    },
     {
       "id": "EVD-2026-6846",
       "observation_id": "OBS-86553",
@@ -563,6 +1243,226 @@
   ],
   "cases": [
     {
+      "id": "CASE-6704",
+      "case_reference": "TRF-DEMO-9423",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-81703",
+      "evidence_package_id": "EVD-2026-5945",
+      "vehicle_plate": "LAG-319-XA",
+      "vehicle_class": "Sedan (Toyota Corolla, Dark Grey)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.958,
+      "offence_confidence": 0.922,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 1.95,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T04:18:19.879Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
+      "id": "CASE-2056",
+      "case_reference": "TRF-DEMO-2259",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-27551",
+      "evidence_package_id": "EVD-2026-6831",
+      "vehicle_plate": "LAG-319-XA",
+      "vehicle_class": "Sedan (Toyota Corolla, Dark Grey)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.955,
+      "offence_confidence": 0.949,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 1.95,
+      "grace_period_threshold_sec": 0.5,
+      "status": "ENFORCEMENT_NOTICE_ISSUED",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T04:12:16.360Z",
+      "decision": "APPROVE",
+      "decision_reason": "Clear stop line violation verified against continuous RED light (exceeded 0.5s grace by +1.45s). No lawful exemption.",
+      "decided_at": "2026-10-17T04:15:17.616Z",
+      "notice_reference": "NOT-2026-8405"
+    },
+    {
+      "id": "CASE-3922",
+      "case_reference": "TRF-DEMO-4093",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-28585",
+      "evidence_package_id": "EVD-2026-1126",
+      "vehicle_plate": "LAG-319-XA",
+      "vehicle_class": "Sedan (Toyota Corolla, Dark Grey)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.959,
+      "offence_confidence": 0.969,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 1.95,
+      "grace_period_threshold_sec": 0.5,
+      "status": "ENFORCEMENT_NOTICE_ISSUED",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T04:11:56.285Z",
+      "decision": "APPROVE",
+      "decision_reason": "Clear stop line violation verified against continuous RED light (exceeded 0.5s grace by +1.45s). No lawful exemption.",
+      "decided_at": "2026-10-17T04:15:53.565Z",
+      "notice_reference": "NOT-2026-5262"
+    },
+    {
+      "id": "CASE-7968",
+      "case_reference": "TRF-DEMO-1752",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-17580",
+      "evidence_package_id": "EVD-2026-5200",
+      "vehicle_plate": "ABJ-882-KW",
+      "vehicle_class": "SUV (Dark Blue)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.949,
+      "offence_confidence": 0.924,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 0.5000000000000001,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T04:11:20.123Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
+      "id": "CASE-8555",
+      "case_reference": "TRF-DEMO-5458",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-19913",
+      "evidence_package_id": "EVD-2026-3308",
+      "vehicle_plate": "LND-492-AA",
+      "vehicle_class": "SUV (Dark Blue)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.957,
+      "offence_confidence": 0.973,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 0.5331999999999972,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T04:09:47.077Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
+      "id": "CASE-3975",
+      "case_reference": "TRF-DEMO-8892",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-52372",
+      "evidence_package_id": "EVD-2026-6562",
+      "vehicle_plate": "LAG-551-ZZ",
+      "vehicle_class": "SUV (Dark Blue)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.962,
+      "offence_confidence": 0.92,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 2.2165999999999975,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T04:09:17.015Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
+      "id": "CASE-9779",
+      "case_reference": "TRF-DEMO-8733",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-68300",
+      "evidence_package_id": "EVD-2026-4259",
+      "vehicle_plate": "LND-492-AA",
+      "vehicle_class": "Hatchback (White)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.964,
+      "offence_confidence": 0.966,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 2.2998000000000025,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T04:09:15.453Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
+      "id": "CASE-5875",
+      "case_reference": "TRF-DEMO-1700",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-97263",
+      "evidence_package_id": "EVD-2026-1427",
+      "vehicle_plate": "ABC-123-XY",
+      "vehicle_class": "Sedan (Black)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.932,
+      "offence_confidence": 0.96,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 2.266699999999998,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T04:09:13.559Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
+      "id": "CASE-9783",
+      "case_reference": "TRF-DEMO-7901",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-27964",
+      "evidence_package_id": "EVD-2026-4918",
+      "vehicle_plate": "LND-492-AA",
+      "vehicle_class": "Sedan (Black)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.924,
+      "offence_confidence": 0.969,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 2.116599999999998,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T04:09:07.651Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
+      "id": "CASE-3471",
+      "case_reference": "TRF-DEMO-2680",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-56635",
+      "evidence_package_id": "EVD-2026-7568",
+      "vehicle_plate": "LND-492-AA",
+      "vehicle_class": "Sedan (Black)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.955,
+      "offence_confidence": 0.957,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 2.1665999999999985,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T04:09:06.119Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
       "id": "CASE-9762",
       "case_reference": "TRF-DEMO-8561",
       "camera_id": "CAM-LAG-01",
@@ -620,13 +1520,13 @@
       "evidence_integrity": "VERIFIED",
       "signal_time_into_red_sec": 1.84,
       "grace_period_threshold_sec": 0.5,
-      "status": "AWAITING_REVIEW",
+      "status": "ENFORCEMENT_NOTICE_ISSUED",
       "assigned_reviewer": "Officer B. Ojo #4409",
       "created_at": "2026-10-16T14:22:19Z",
-      "decision": null,
-      "decision_reason": null,
-      "decided_at": null,
-      "notice_reference": null
+      "decision": "APPROVE",
+      "decision_reason": "Clear stop line violation verified against continuous RED light (exceeded 0.5s grace by +1.34s). No lawful exemption.",
+      "decided_at": "2026-10-17T04:13:08.269Z",
+      "notice_reference": "NOT-2026-4814"
     },
     {
       "id": "CASE-1002",
@@ -697,6 +1597,69 @@
   ],
   "enforcement_notices": [
     {
+      "id": "NOT-2026-5262",
+      "case_id": "CASE-3922",
+      "case_reference": "TRF-DEMO-4093",
+      "notice_reference": "NOT-2026-5262",
+      "issuing_authority": "State Traffic Management & Automated Enforcement Agency (STMAEA)",
+      "issuing_officer": "Officer Babatunde Ojo",
+      "badge_number": "STMAEA-4409",
+      "vehicle_plate": "LAG-319-XA",
+      "offence_description": "Failure to obey red light traffic signal contrary to Section 22(1) Road Traffic Regulations",
+      "incident_location": "Victoria Island Main - Ozumba Mbadiwe & Adeola Odeku",
+      "incident_time": "2026-10-17T04:11:56.285Z",
+      "penalty_amount_ngn": 35000,
+      "penalty_amount_usd": 45,
+      "payment_reference": "PAY-STMAEA-5729-44",
+      "payment_status": "UNPAID",
+      "issued_at": "2026-10-17T04:15:53.567Z",
+      "due_date": "2026-11-14T04:15:53.568Z",
+      "appeal_window_days": 28,
+      "evidence_verification_url": "https://tcontrol.traffic.gov.ng/verify/NOT-2026-5262"
+    },
+    {
+      "id": "NOT-2026-8405",
+      "case_id": "CASE-2056",
+      "case_reference": "TRF-DEMO-2259",
+      "notice_reference": "NOT-2026-8405",
+      "issuing_authority": "State Traffic Management & Automated Enforcement Agency (STMAEA)",
+      "issuing_officer": "Officer Babatunde Ojo",
+      "badge_number": "STMAEA-4409",
+      "vehicle_plate": "LAG-319-XA",
+      "offence_description": "Failure to obey red light traffic signal contrary to Section 22(1) Road Traffic Regulations",
+      "incident_location": "Victoria Island Main - Ozumba Mbadiwe & Adeola Odeku",
+      "incident_time": "2026-10-17T04:12:16.360Z",
+      "penalty_amount_ngn": 35000,
+      "penalty_amount_usd": 45,
+      "payment_reference": "PAY-STMAEA-1123-17",
+      "payment_status": "UNPAID",
+      "issued_at": "2026-10-17T04:15:17.616Z",
+      "due_date": "2026-11-14T04:15:17.616Z",
+      "appeal_window_days": 28,
+      "evidence_verification_url": "https://tcontrol.traffic.gov.ng/verify/NOT-2026-8405"
+    },
+    {
+      "id": "NOT-2026-4814",
+      "case_id": "CASE-1001",
+      "case_reference": "TRF-DEMO-0001",
+      "notice_reference": "NOT-2026-4814",
+      "issuing_authority": "State Traffic Management & Automated Enforcement Agency (STMAEA)",
+      "issuing_officer": "Officer Babatunde Ojo",
+      "badge_number": "STMAEA-4409",
+      "vehicle_plate": "LND-492-AA",
+      "offence_description": "Failure to obey red light traffic signal contrary to Section 22(1) Road Traffic Regulations",
+      "incident_location": "Victoria Island Main - Ozumba Mbadiwe & Adeola Odeku",
+      "incident_time": "2026-10-16T14:22:19Z",
+      "penalty_amount_ngn": 35000,
+      "penalty_amount_usd": 45,
+      "payment_reference": "PAY-STMAEA-2267-22",
+      "payment_status": "UNPAID",
+      "issued_at": "2026-10-17T04:13:08.269Z",
+      "due_date": "2026-11-14T04:13:08.269Z",
+      "appeal_window_days": 28,
+      "evidence_verification_url": "https://tcontrol.traffic.gov.ng/verify/NOT-2026-4814"
+    },
+    {
       "id": "NOT-2026-0842",
       "case_id": "CASE-1004",
       "case_reference": "TRF-DEMO-0004",
@@ -739,6 +1702,136 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "AUD-MVBVZ6G7-544",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-9423",
+      "details": "Automated red-light violation recorded for LAG-319-XA on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T04:18:19.879Z"
+    },
+    {
+      "id": "AUD-MVBVW1K0-318",
+      "user": "Officer Babatunde Ojo (STMAEA-4409)",
+      "role": "REVIEW_OFFICER",
+      "action": "CASE_APPROVED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-4093",
+      "details": "Approved violation. Generated Notice: NOT-2026-5262. Reason: Clear stop line violation verified against continuous RED light (exceeded 0.5s grace by +1.45s). No lawful exemption.",
+      "timestamp": "2026-10-17T04:15:53.568Z"
+    },
+    {
+      "id": "AUD-MVBVV9TC-319",
+      "user": "Officer Babatunde Ojo (STMAEA-4409)",
+      "role": "REVIEW_OFFICER",
+      "action": "CASE_APPROVED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-2259",
+      "details": "Approved violation. Generated Notice: NOT-2026-8405. Reason: Clear stop line violation verified against continuous RED light (exceeded 0.5s grace by +1.45s). No lawful exemption.",
+      "timestamp": "2026-10-17T04:15:17.617Z"
+    },
+    {
+      "id": "AUD-MVBVSI12-719",
+      "user": "Officer Babatunde Ojo (STMAEA-4409)",
+      "role": "REVIEW_OFFICER",
+      "action": "CASE_APPROVED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-0001",
+      "details": "Approved violation. Generated Notice: NOT-2026-4814. Reason: Clear stop line violation verified against continuous RED light (exceeded 0.5s grace by +1.34s). No lawful exemption.",
+      "timestamp": "2026-10-17T04:13:08.294Z"
+    },
+    {
+      "id": "AUD-MVBVRDYG-980",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-2259",
+      "details": "Automated red-light violation recorded for LAG-319-XA on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T04:12:16.360Z"
+    },
+    {
+      "id": "AUD-MVBVQYGT-726",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-4093",
+      "details": "Automated red-light violation recorded for LAG-319-XA on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T04:11:56.285Z"
+    },
+    {
+      "id": "AUD-MVBVQ6KB-275",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-1752",
+      "details": "Automated red-light violation recorded for ABJ-882-KW on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T04:11:20.123Z"
+    },
+    {
+      "id": "AUD-MVBVO6RP-511",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-5458",
+      "details": "Automated red-light violation recorded for LND-492-AA on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T04:09:47.077Z"
+    },
+    {
+      "id": "AUD-MVBVNJKN-233",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-8892",
+      "details": "Automated red-light violation recorded for LAG-551-ZZ on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T04:09:17.015Z"
+    },
+    {
+      "id": "AUD-MVBVNID9-586",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-8733",
+      "details": "Automated red-light violation recorded for LND-492-AA on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T04:09:15.453Z"
+    },
+    {
+      "id": "AUD-MVBVNGWN-989",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-1700",
+      "details": "Automated red-light violation recorded for ABC-123-XY on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T04:09:13.559Z"
+    },
+    {
+      "id": "AUD-MVBVNCCJ-768",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-7901",
+      "details": "Automated red-light violation recorded for LND-492-AA on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T04:09:07.651Z"
+    },
+    {
+      "id": "AUD-MVBVNB5Z-797",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-2680",
+      "details": "Automated red-light violation recorded for LND-492-AA on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T04:09:06.121Z"
+    },
     {
       "id": "AUD-MVBV49SE-927",
       "user": "AI Detection Engine",

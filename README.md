@@ -76,3 +76,42 @@ Inside the dashboard, navigate to **AI Violation Simulator**:
 - Click **"Cycle Traffic Light"** to change signal states (Green / Amber / Red).
 - Click **"Trigger Red-Light Runner"** to dispatch a vehicle timed to cross the calibrated stop line on RED.
 - Watch the AI Engine detect the infraction in real-time, compile the 4-frame evidence package, calculate the SHA-256 hash, and queue the case for officer review!
+
+---
+
+## 🏛️ Public Citizen Verification & Due Process Portal (Option C)
+
+Registered vehicle owners receiving a Citation Notice or scanning the notice's cryptographic QR code can access the public citizen portal without officer credentials:
+- **Direct Portal Access:** Click **"Citizen Public Portal (QR)"** in the top navigation or use notice reference (e.g. `NOT-2026-0842`).
+- **Evidence Review:** Inspect all 4 synchronized evidence frames and cryptographic SHA-256 integrity confirmation.
+- **Statutory Appeal Filing:** Submit a formal due process appeal under statutory grounds (*"Vehicle Stolen / Cloned"*, *"Emergency Services Yield"*, *"Defective Signal Hardware"*, *"Not the Driver"*).
+- **Fine Payment Simulation:** Settle penalty charges securely with instant receipt generation.
+
+---
+
+## 🐍 Python Computer Vision Microservice (Option 2)
+
+A dedicated computer vision worker using FastAPI, OpenCV, and NumPy runs on port `8000`:
+- **Tracking:** Kalman-style centroid & optical bounding box tracker with unique track IDs.
+- **Stop-Line Engine:** Sub-millisecond polygon crossing intersection logic with amber grace period enforcement.
+- **Confidence Separation:** Optical plate recognition confidence is strictly isolated from violation probability.
+- **Run locally with uv:**
+  ```bash
+  cd ai-service
+  uv run python main.py
+  ```
+
+---
+
+## 🐳 Docker Deployment (Option D)
+
+Deploy the entire platform (Web Backend + Python CV Microservice) with a single command:
+
+```bash
+docker compose up --build
+```
+
+- Web Command Dashboard & Citizen Portal: **`http://localhost:3000`**
+- AI Computer Vision Microservice: **`http://localhost:8000`**
+- Interactive Swagger API Docs: **`http://localhost:8000/docs`**
+
