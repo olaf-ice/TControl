@@ -104,6 +104,21 @@ const API = {
       method: 'POST',
       body: JSON.stringify(detectionData)
     });
+  },
+
+  createManualIncident(incidentData) {
+    return this.request('/incidents/manual', {
+      method: 'POST',
+      body: JSON.stringify(incidentData)
+    });
+  },
+
+  getMetrics() {
+    return this.request('/metrics');
+  },
+
+  getExportBundleUrl(caseId) {
+    return `${this.baseUrl}/cases/${caseId}/export-bundle`;
   }
 };
 

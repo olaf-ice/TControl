@@ -31,11 +31,11 @@
         <span id="live-clock" style="color: #fff; font-weight: 600;">2026-10-16 15:00:00 UTC</span>
       </div>
 
-      <div class="officer-badge">
-        <div class="officer-avatar">BO</div>
+      <div class="officer-badge" style="cursor: pointer;" onclick="App.toggleRoleSwitcher()" title="Click to Switch Role">
+        <div class="officer-avatar" id="header-officer-avatar">BO</div>
         <div class="officer-info">
-          <span class="officer-name">Officer B. Ojo</span>
-          <span class="officer-role">STMAEA-4409 · REVIEW OFFICER</span>
+          <span class="officer-name" id="header-officer-name">Officer B. Ojo</span>
+          <span class="officer-role" id="header-officer-role">STMAEA-4409 · REVIEW OFFICER ▾</span>
         </div>
       </div>
     </div>
@@ -57,6 +57,12 @@
           <a class="nav-item" data-view="simulator">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
             AI Violation Simulator
+          </a>
+        </li>
+        <li>
+          <a class="nav-item" data-view="footage">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            Footage Lab & Upload
           </a>
         </li>
         <li>
@@ -97,6 +103,12 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
             Appeals & Tribunals
             <span class="nav-counter" id="nav-appeals-badge">1</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-item" data-view="metrics">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Pilot Readiness Metrics
           </a>
         </li>
         <li>

@@ -104,6 +104,30 @@
   ],
   "vehicle_observations": [
     {
+      "id": "OBS-MAN-2294",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "TEST-771-AB",
+      "plate_confidence": 1,
+      "plate_char_scores": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "vehicle_class": "Sedan",
+      "speed_kmh": 50,
+      "observed_at": "2026-10-16T16:02:47.035Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 2.8,
+      "requires_review": true,
+      "entry_type": "MANUAL_OFFICER_LOG"
+    },
+    {
       "id": "OBS-89201",
       "camera_id": "CAM-LAG-01",
       "plate_text": "LND-492-AA",
@@ -243,6 +267,51 @@
     }
   ],
   "evidence_packages": [
+    {
+      "id": "EVD-MAN-8030",
+      "observation_id": "OBS-MAN-2294",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-16T16:02:47.055Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Manual Observation / Stop-Line Approach",
+          "timestamp": "2026-10-16T16:02:47.035Z",
+          "signal": "RED (+2.8s)",
+          "vehicle_distance_to_line_m": 6,
+          "description": "Field warden test observation"
+        },
+        "crossing": {
+          "label": "Frame 2: Stop-Line Crossing",
+          "timestamp": "2026-10-16T16:02:47.035Z",
+          "signal": "RED (+2.8s)",
+          "vehicle_distance_to_line_m": 0,
+          "description": "Field observed stop line crossing during confirmed red."
+        },
+        "transit": {
+          "label": "Frame 3: Transit",
+          "timestamp": "2026-10-16T16:02:47.035Z",
+          "signal": "RED (+2.8s)",
+          "vehicle_distance_to_line_m": -10,
+          "description": "Transit confirmed."
+        },
+        "plate_crop": {
+          "label": "Frame 4: Plate Inspection",
+          "timestamp": "2026-10-16T16:02:47.035Z",
+          "plate_text": "TEST-771-AB",
+          "confidence": 1,
+          "description": "Officer verified plate registration."
+        }
+      },
+      "metadata": {
+        "detector_model": "Manual-Officer-Entry-v1",
+        "ocr_model": "Human-Verification-Officer",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 2.8,
+        "violation_margin_sec": 2.3,
+        "integrity_verified": true
+      }
+    },
     {
       "id": "EVD-2026-0001",
       "observation_id": "OBS-89201",
@@ -426,6 +495,28 @@
   ],
   "cases": [
     {
+      "id": "CASE-MAN-6399",
+      "case_reference": "TRF-MAN-4902",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-MAN-2294",
+      "evidence_package_id": "EVD-MAN-8030",
+      "vehicle_plate": "TEST-771-AB",
+      "vehicle_class": "Sedan",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 1,
+      "offence_confidence": 1,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 2.8,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo",
+      "created_at": "2026-10-16T16:02:47.055Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
       "id": "CASE-1001",
       "case_reference": "TRF-DEMO-0001",
       "camera_id": "CAM-LAG-01",
@@ -558,6 +649,16 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "AUD-MVB5P9CG-304",
+      "user": "Officer B. Ojo",
+      "role": "REVIEW_OFFICER",
+      "action": "MANUAL_INCIDENT_ENTERED",
+      "target_entity": "CASE",
+      "target_id": "TRF-MAN-4902",
+      "details": "Manual incident logged for plate TEST-771-AB: Field warden test observation",
+      "timestamp": "2026-10-16T16:02:47.056Z"
+    },
     {
       "id": "AUD-MVB4ASMD-632",
       "user": "Reviewer Officer",

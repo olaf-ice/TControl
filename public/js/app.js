@@ -8,6 +8,19 @@ const App = {
   activeFrameKey: 'crossing',
   currentCaseData: null,
   simulatorInstance: null,
+  currentRole: {
+    id: 'REVIEW_OFFICER',
+    name: 'Officer B. Ojo',
+    badge: 'STMAEA-4409',
+    title: 'REVIEW OFFICER'
+  },
+
+  rolesList: [
+    { id: 'REVIEW_OFFICER', name: 'Officer B. Ojo', badge: 'STMAEA-4409', title: 'REVIEW OFFICER', avatar: 'BO' },
+    { id: 'SUPERVISOR', name: 'Inspector M. Danjuma', badge: 'STMAEA-3120', title: 'TRIBUNAL SUPERVISOR', avatar: 'MD' },
+    { id: 'CAMERA_OPERATOR', name: 'Operator T. Adebayo', badge: 'CAM-OPS-114', title: 'CAMERA & SENSOR OPERATOR', avatar: 'TA' },
+    { id: 'SYS_ADMIN', name: 'Chief Engr. C. Okon', badge: 'HQ-ADMIN-01', title: 'SYSTEM ADMINISTRATOR', avatar: 'CO' }
+  ],
 
   init() {
     this.bindNavigation();
@@ -15,6 +28,50 @@ const App = {
     this.updateClock();
     setInterval(() => this.updateClock(), 1000);
     this.loadView('dashboard');
+  },
+
+  toggleRoleSwitcher() {
+    const modal = document.getElementById('modal-container');
+    modal.innerHTML = `
+      <div class="modal-backdrop open" id="app-modal">
+        <div class="modal-dialog" style="max-width: 500px;">
+          <div class="modal-header">
+            <h3 class="modal-title">Select Active Officer Profile</h3>
+            <button class="modal-close" onclick="App.closeModal()">&times;</button>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+            Demonstrate role-based access control (RBAC). Each role has specific permissions for evidence review, stop-line calibration, and appeal tribunal adjudication.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            ${this.rolesList.map(r => `
+              <div style="background: ${this.currentRole.id === r.id ? 'var(--bg-surface-elevated)' : 'var(--bg-base)'}; border: 1px solid ${this.currentRole.id === r.id ? 'var(--accent-cyan)' : 'var(--border-subtle)'}; padding: 12px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-between; cursor: pointer;" onclick="App.setRole('${r.id}')">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div class="officer-avatar">${r.avatar}</div>
+                  <div>
+                    <div style="font-weight: 700; color: #fff; font-size: 13.5px;">${r.name}</div>
+                    <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">${r.badge} · ${r.title}</div>
+                  </div>
+                </div>
+                ${this.currentRole.id === r.id ? '<span class="badge badge-cyan">Active</span>' : ''}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  setRole(roleId) {
+    const r = this.rolesList.find(item => item.id === roleId);
+    if (r) {
+      this.currentRole = r;
+      document.getElementById('header-officer-avatar').textContent = r.avatar;
+      document.getElementById('header-officer-name').textContent = r.name;
+      document.getElementById('header-officer-role').textContent = `${r.badge} · ${r.title} ▾`;
+      this.closeModal();
+      this.showToast(`Switched active profile to ${r.name} (${r.title})`, 'success');
+      this.loadView(this.currentView);
+    }
   },
 
   updateClock() {
@@ -94,6 +151,9 @@ const App = {
       case 'simulator':
         this.renderSimulator();
         break;
+      case 'footage':
+        this.renderFootageLab();
+        break;
       case 'review':
         this.renderReviewWorkspace();
         break;
@@ -108,6 +168,9 @@ const App = {
         break;
       case 'appeals':
         this.renderAppeals();
+        break;
+      case 'metrics':
+        this.renderMetrics();
         break;
       case 'audit':
         this.renderAuditLogs();
@@ -138,9 +201,13 @@ const App = {
             <p>Real-time optical monitoring, AI violation triage, evidence integrity, and authorized adjudication</p>
           </div>
           <div class="view-actions">
-            <button class="btn btn-secondary" onclick="App.loadView('simulator')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-              Open AI Detector Simulator
+            <button class="btn btn-secondary" onclick="App.openManualIncidentModal()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Manual Incident Entry
+            </button>
+            <button class="btn btn-secondary" onclick="App.loadView('footage')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Footage Lab
             </button>
             <button class="btn btn-primary" onclick="App.openReviewCase('${awaitingCases[0] ? awaitingCases[0].id : 'CASE-1001'}')">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -467,6 +534,10 @@ const App = {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                   Recalculate & Verify SHA-256 Hash
                 </button>
+                <a href="/api/cases/${c.id}/export-bundle" class="btn btn-secondary" style="width: 100%; margin-top: 6px; padding: 6px; font-size: 11px; text-decoration: none;" download>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Export Certified Court Bundle (JSON)
+                </a>
               </div>
             </div>
 
@@ -1397,14 +1468,320 @@ const App = {
     }
   },
 
+  // --- VIEW 9: FOOTAGE LAB & RECORDED VIDEO PROCESSOR (Phase 2 Requirement) ---
+  renderFootageLab() {
+    const container = document.getElementById('view-container');
+    container.innerHTML = `
+      <div class="view-header">
+        <div class="view-title-group">
+          <h1>Recorded Footage Processor & AI Lab</h1>
+          <p>Process recorded videos, test detection algorithms under varied lighting/weather, and triage results</p>
+        </div>
+        <div class="view-actions">
+          <button class="btn btn-primary" onclick="App.triggerFootageBatchProcess()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Execute Video Analysis Pipeline
+          </button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Video Feed & Frame Inspector</div>
+            <span class="badge badge-cyan">Recorded Session: 1080p @ 30 FPS</span>
+          </div>
+
+          <!-- Video Canvas / Player -->
+          <div style="background: #000; border-radius: var(--radius-md); aspect-ratio: 16/9; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; border: 1px solid var(--border-medium);">
+            <div id="footage-display" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle, #1a273e 0%, #060a12 100%);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              <div style="font-weight: 700; color: #fff; margin-top: 12px; font-size: 15px;">PILOT FOOTAGE BATCH: JUNCTION_01_DAY_SAMPLE.mp4</div>
+              <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">1,800 Frames · Synced NTCIP Signal Telemetry · Calibrated Stop-Line Y: 340px</div>
+              <div id="footage-progress-bar" style="width: 60%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-top: 16px; overflow: hidden; display: none;">
+                <div id="footage-progress-fill" style="width: 0%; height: 100%; background: var(--accent-cyan); transition: width 0.2s;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 16px; display: flex; align-items: center; justify-content: space-between; font-size: 12px;">
+            <div style="display: flex; gap: 8px;">
+              <span class="badge badge-muted">Detection: YOLOv8-Traffic-v2.4</span>
+              <span class="badge badge-muted">OCR: PaddleOCR-v4</span>
+              <span class="badge badge-green">Signal Synced</span>
+            </div>
+            <span style="font-family: var(--font-mono); color: var(--text-dim);" id="footage-status-text">Status: Ready for Batch Run</span>
+          </div>
+        </div>
+
+        <!-- Video Parameters & Scenarios -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="panel">
+            <div class="panel-title" style="font-size: 14px; margin-bottom: 12px;">Select Test Scenario</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="background: var(--bg-surface-elevated); padding: 10px; border-radius: 6px; border: 1px solid var(--accent-cyan); display: flex; gap: 10px; cursor: pointer;">
+                <input type="radio" name="scenario" checked />
+                <div>
+                  <div style="font-weight: 700; color: #fff; font-size: 12.5px;">Scenario A: Clear Daylight & High Volume</div>
+                  <div style="font-size: 11px; color: var(--text-dim);">Victoria Island - 15 vehicles/min, normal contrast</div>
+                </div>
+              </label>
+
+              <label style="background: var(--bg-base); padding: 10px; border-radius: 6px; border: 1px solid var(--border-subtle); display: flex; gap: 10px; cursor: pointer;">
+                <input type="radio" name="scenario" />
+                <div>
+                  <div style="font-weight: 700; color: #fff; font-size: 12.5px;">Scenario B: Nighttime & Heavy Rain</div>
+                  <div style="font-size: 11px; color: var(--text-dim);">Glare reflections, testing low-confidence routing</div>
+                </div>
+              </label>
+
+              <label style="background: var(--bg-base); padding: 10px; border-radius: 6px; border: 1px solid var(--border-subtle); display: flex; gap: 10px; cursor: pointer;">
+                <input type="radio" name="scenario" />
+                <div>
+                  <div style="font-weight: 700; color: #fff; font-size: 12.5px;">Scenario C: Obstructed / Dirty Plates</div>
+                  <div style="font-size: 11px; color: var(--text-dim);">Validates human verification threshold (<85%)</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title" style="font-size: 14px; margin-bottom: 12px;">Upload Custom Video Footage</div>
+            <div style="border: 2px dashed var(--border-medium); border-radius: var(--radius-md); padding: 20px; text-align: center; cursor: pointer;" onclick="App.showToast('Select an MP4/MKV video clip from your local storage to analyze', 'success')">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">Drop MP4 / AVI / RTSP capture here</div>
+              <div style="font-size: 10px; color: var(--text-dim); margin-top: 2px;">Supported: H.264, H.265, MJPEG up to 4K</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  triggerFootageBatchProcess() {
+    const bar = document.getElementById('footage-progress-bar');
+    const fill = document.getElementById('footage-progress-fill');
+    const status = document.getElementById('footage-status-text');
+    if (!bar || !fill) return;
+
+    bar.style.display = 'block';
+    fill.style.width = '0%';
+    status.textContent = 'Processing frame 0 / 1800...';
+
+    let progress = 0;
+    const interval = setInterval(async () => {
+      progress += 15;
+      fill.style.width = `${progress}%`;
+      status.textContent = `Analyzing frames: ${progress * 18} / 1800 (Vehicles tracked: ${Math.floor(progress / 5)})`;
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        status.textContent = 'Batch complete! 1 Red-Light Infraction Detected';
+        
+        // Trigger simulated detection from footage
+        await API.simulateDetection({
+          plate_text: 'ABJ-904-XY',
+          plate_confidence: 0.962,
+          speed_kmh: 53,
+          red_elapsed_sec: 2.10,
+          vehicle_class: 'Sedan (Toyota Camry, Black)'
+        });
+        this.refreshCounters();
+        this.showToast('Footage analysis complete: Violation detected & queued for review!', 'success');
+      }
+    }, 200);
+  },
+
+  // --- VIEW 10: PILOT QUALITY & READINESS METRICS (Section 8 Requirement) ---
+  async renderMetrics() {
+    const container = document.getElementById('view-container');
+    try {
+      const m = await API.getMetrics();
+      container.innerHTML = `
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Pilot Quality & Statutory Acceptance Metrics</h1>
+            <p>Empirical evaluation against the six required readiness criteria before official agency rollout</p>
+          </div>
+          <div class="view-actions">
+            <button class="btn btn-secondary" onclick="window.print()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Export Audit Report
+            </button>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card green-card">
+            <div class="stat-header">
+              <span class="stat-label">Exact Plate Match Accuracy</span>
+              <div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg></div>
+            </div>
+            <div class="stat-value" style="color: var(--traffic-green);">${m.plate_recognition.exact_match_accuracy_pct}%</div>
+            <div class="stat-subtext"><span class="positive">${m.plate_recognition.character_level_accuracy_pct}% Character-Level</span> across ${m.plate_recognition.samples_tested} tests</div>
+          </div>
+
+          <div class="stat-card cyan-card">
+            <div class="stat-header">
+              <span class="stat-label">Offence Detection Precision</span>
+              <div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="stat-value" style="color: var(--accent-cyan);">${m.offence_detection.precision_pct}%</div>
+            <div class="stat-subtext"><span class="positive">Recall: ${m.offence_detection.recall_pct}%</span> · False Positive Rate: ${m.offence_detection.false_positive_rate_pct}%</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">Evidence Completeness</span>
+              <div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            </div>
+            <div class="stat-value">${m.evidence_completeness.complete_4_frame_packages_pct}%</div>
+            <div class="stat-subtext"><span class="positive">100% SHA-256 Tamper-Free</span> Certified</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">Average Officer Review Time</span>
+              <div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg></div>
+            </div>
+            <div class="stat-value">${m.review_efficiency.avg_officer_review_time_sec}s</div>
+            <div class="stat-subtext">Review Efficiency · ${m.review_efficiency.cases_reviewed_today} Cases Processed</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="panel">
+            <div class="panel-title" style="font-size: 15px; margin-bottom: 14px;">1. Automated Triage & Edge-Case Protection</div>
+            <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12.5px;">
+              <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle);">
+                <span style="color: var(--text-muted);">Low-Confidence (<85%) Human Routing Rate:</span>
+                <span style="font-family: var(--font-mono); font-weight: 700; color: var(--traffic-amber);">${m.plate_recognition.manual_review_routing_rate_pct}%</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle);">
+                <span style="color: var(--text-muted);">Amber-to-Red Trap Rejections (Grace Period):</span>
+                <span style="font-family: var(--font-mono); font-weight: 700; color: var(--traffic-green);">${m.offence_detection.amber_trap_rejection_count} Cases Protected</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle);">
+                <span style="color: var(--text-muted);">Appeals Overturned Rate:</span>
+                <span style="font-family: var(--font-mono); font-weight: 700; color: #fff;">${m.review_efficiency.appeals_overturned_pct}% (Tribunal Healthy)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title" style="font-size: 15px; margin-bottom: 14px;">2. Sensor Grid Reliability & Synchronization</div>
+            <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12.5px;">
+              <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle);">
+                <span style="color: var(--text-muted);">Camera Fleet Availability:</span>
+                <span style="font-family: var(--font-mono); font-weight: 700; color: var(--traffic-green);">${m.system_reliability.camera_uptime_pct}% Uptime</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle);">
+                <span style="color: var(--text-muted);">Network Time Protocol (NTP) Average Drift:</span>
+                <span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-cyan);">+${m.system_reliability.avg_clock_drift_ms}ms (Pass < 15ms)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle);">
+                <span style="color: var(--text-muted);">Optical Stream Frame Loss:</span>
+                <span style="font-family: var(--font-mono); font-weight: 700; color: #fff;">${m.system_reliability.dropped_frames_rate_pct}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } catch (e) {
+      container.innerHTML = `<div class="panel" style="color: var(--traffic-red);">Error loading metrics: ${e.message}</div>`;
+    }
+  },
+
+  // Modal: Manual Incident Entry (Phase 1 Requirement)
+  openManualIncidentModal() {
+    const modal = document.getElementById('modal-container');
+    modal.innerHTML = `
+      <div class="modal-backdrop open" id="app-modal">
+        <div class="modal-dialog">
+          <div class="modal-header">
+            <h3 class="modal-title">Manual Incident Entry (Field Officer Record)</h3>
+            <button class="modal-close" onclick="App.closeModal()">&times;</button>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+            Allows sworn officers or field wardens to record an observed violation when optical sensors require manual intervention or during camera maintenance.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Vehicle Registration Number</label>
+              <input type="text" class="form-input" id="man-plate-input" placeholder="e.g. LAG-881-KD" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Vehicle Make / Model / Color</label>
+              <input type="text" class="form-input" id="man-class-input" placeholder="e.g. Sedan (Toyota Corolla, Blue)" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Intersection Camera Station</label>
+              <select class="form-select" id="man-cam-select">
+                <option value="CAM-LAG-01">Victoria Island Main - Ozumba Mbadiwe</option>
+                <option value="CAM-ABJ-02">Abuja Central - Shehu Shagari Way</option>
+                <option value="CAM-IKJ-03">Ikeja Junction - Mobolaji Bank Anthony</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Signal Red Duration (Seconds)</label>
+              <input type="number" step="0.1" class="form-input" id="man-red-input" value="2.4" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Field Officer Witness Notes & Observations</label>
+            <textarea class="form-textarea" id="man-notes-input" rows="3">Observed vehicle disregard illuminated red signal 2.4s into red phase. Manual sighting logged by officer on patrol.</textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="btn btn-secondary" onclick="App.closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="App.submitManualIncident()">Submit Manual Case</button>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  async submitManualIncident() {
+    const plate = document.getElementById('man-plate-input').value;
+    const vClass = document.getElementById('man-class-input').value;
+    const camId = document.getElementById('man-cam-select').value;
+    const redTime = document.getElementById('man-red-input').value;
+    const notes = document.getElementById('man-notes-input').value;
+
+    if (!plate) {
+      this.showToast('Please enter a vehicle registration number', 'danger');
+      return;
+    }
+
+    try {
+      await API.createManualIncident({
+        plate_text: plate,
+        vehicle_class: vClass,
+        camera_id: camId,
+        red_elapsed_sec: redTime,
+        notes,
+        officer_name: this.currentRole.name
+      });
+      this.closeModal();
+      this.showToast(`Manual incident logged for ${plate}. Sent to review queue.`, 'success');
+      this.refreshCounters();
+      if (this.currentView === 'dashboard') this.renderDashboard();
+    } catch (e) {
+      this.showToast('Failed to create manual incident: ' + e.message, 'danger');
+    }
+  },
+
   showToast(message, type = 'success') {
     const container = document.getElementById('toast-container');
     if (!container) return;
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
-    toast.innerHTML = `
-      <div>${message}</div>
-    `;
+    toast.innerHTML = `<div>${message}</div>`;
     container.appendChild(toast);
     setTimeout(() => {
       toast.style.opacity = '0';
@@ -1415,3 +1792,4 @@ const App = {
 
 window.App = App;
 document.addEventListener('DOMContentLoaded', () => App.init());
+
