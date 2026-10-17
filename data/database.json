@@ -104,6 +104,29 @@
   ],
   "vehicle_observations": [
     {
+      "id": "OBS-86553",
+      "camera_id": "CAM-LAG-01",
+      "plate_text": "LAG-319-XA",
+      "plate_confidence": 0.953,
+      "plate_char_scores": [
+        0.97,
+        0.96,
+        0.98,
+        0.92,
+        0.99,
+        0.97,
+        0.97,
+        0.94
+      ],
+      "vehicle_class": "Sedan (Toyota Corolla, Dark Grey)",
+      "speed_kmh": 48,
+      "observed_at": "2026-10-17T03:54:17.799Z",
+      "lane": 1,
+      "signal_state": "RED",
+      "red_elapsed_sec": 1.95,
+      "requires_review": true
+    },
+    {
       "id": "OBS-MAN-2294",
       "camera_id": "CAM-LAG-01",
       "plate_text": "TEST-771-AB",
@@ -267,6 +290,51 @@
     }
   ],
   "evidence_packages": [
+    {
+      "id": "EVD-2026-6846",
+      "observation_id": "OBS-86553",
+      "camera_id": "CAM-LAG-01",
+      "sha256_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "created_at": "2026-10-17T03:54:17.870Z",
+      "frames": {
+        "approach": {
+          "label": "Frame 1: Stop-Line Approach",
+          "timestamp": "2026-10-17T03:54:16.643Z",
+          "signal": "RED (+1.15s)",
+          "vehicle_distance_to_line_m": 9.2,
+          "description": "Approaching intersection while signal is active RED."
+        },
+        "crossing": {
+          "label": "Frame 2: Calibrated Stop-Line Crossing",
+          "timestamp": "2026-10-17T03:54:17.445Z",
+          "signal": "RED (+1.95s)",
+          "vehicle_distance_to_line_m": -1.1,
+          "description": "Vehicle front wheels & centroid crossing calibrated line."
+        },
+        "transit": {
+          "label": "Frame 3: Intersection Traversal",
+          "timestamp": "2026-10-17T03:54:17.845Z",
+          "signal": "RED (+2.85s)",
+          "vehicle_distance_to_line_m": -15.4,
+          "description": "Continuing through intersection along traffic lane."
+        },
+        "plate_crop": {
+          "label": "Frame 4: High-Res Number Plate Crop",
+          "timestamp": "2026-10-17T03:54:17.445Z",
+          "plate_text": "LAG-319-XA",
+          "confidence": 0.953,
+          "description": "High-magnification crop with localized character segmentation."
+        }
+      },
+      "metadata": {
+        "detector_model": "YOLOv8-Traffic-v2.4",
+        "ocr_model": "PaddleOCR-v4-PlateLegal",
+        "grace_threshold_sec": 0.5,
+        "recorded_red_duration_sec": 1.95,
+        "violation_margin_sec": 1.45,
+        "integrity_verified": true
+      }
+    },
     {
       "id": "EVD-MAN-8030",
       "observation_id": "OBS-MAN-2294",
@@ -495,6 +563,28 @@
   ],
   "cases": [
     {
+      "id": "CASE-9762",
+      "case_reference": "TRF-DEMO-8561",
+      "camera_id": "CAM-LAG-01",
+      "observation_id": "OBS-86553",
+      "evidence_package_id": "EVD-2026-6846",
+      "vehicle_plate": "LAG-319-XA",
+      "vehicle_class": "Sedan (Toyota Corolla, Dark Grey)",
+      "offence_type": "RED_LIGHT_RUNNING",
+      "plate_ocr_confidence": 0.953,
+      "offence_confidence": 0.97,
+      "evidence_integrity": "VERIFIED",
+      "signal_time_into_red_sec": 1.95,
+      "grace_period_threshold_sec": 0.5,
+      "status": "AWAITING_REVIEW",
+      "assigned_reviewer": "Officer B. Ojo #4409",
+      "created_at": "2026-10-17T03:54:17.870Z",
+      "decision": null,
+      "decision_reason": null,
+      "decided_at": null,
+      "notice_reference": null
+    },
+    {
       "id": "CASE-MAN-6399",
       "case_reference": "TRF-MAN-4902",
       "camera_id": "CAM-LAG-01",
@@ -649,6 +739,16 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "AUD-MVBV49SE-927",
+      "user": "AI Detection Engine",
+      "role": "AI_SERVICE",
+      "action": "VIOLATION_DETECTED",
+      "target_entity": "CASE",
+      "target_id": "TRF-DEMO-8561",
+      "details": "Automated red-light violation recorded for LAG-319-XA on CAM-LAG-01. Sent to officer review.",
+      "timestamp": "2026-10-17T03:54:17.870Z"
+    },
     {
       "id": "AUD-MVB5P9CG-304",
       "user": "Officer B. Ojo",

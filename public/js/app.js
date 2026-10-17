@@ -1576,20 +1576,44 @@ const App = {
 
       if (progress >= 100) {
         clearInterval(interval);
-        status.textContent = 'Batch complete! 1 Red-Light Infraction Detected';
+        status.textContent = 'Batch complete! Processing detections via Python AI Worker...';
         
-        // Trigger simulated detection from footage
-        await API.simulateDetection({
-          plate_text: 'ABJ-904-XY',
-          plate_confidence: 0.962,
-          speed_kmh: 53,
-          red_elapsed_sec: 2.10,
-          vehicle_class: 'Sedan (Toyota Camry, Black)'
-        });
+        try {
+          // Call Python FastAPI vision worker
+          const form = new URLSearchParams();
+          form.append('video_path', 'footage/pilot_junction_01.mp4');
+          form.append('camera_id', 'CAM-LAG-01');
+          form.append('simulated_infractions', '1');
+
+          const pyResp = await fetch('http://localhost:8000/api/v1/process-video', {
+            method: 'POST',
+            body: form
+          });
+
+          if (pyResp.ok) {
+            const pyData = await pyResp.json();
+            const vio = pyData.violations[0];
+            status.textContent = `Completed: ${pyData.processed_vehicles} Vehicles Tracked · 1 Violation Confirmed (${vio.case_reference})`;
+            this.showToast(`Python AI Worker: Extracted ${vio.plate} (Case ${vio.case_reference}) with SHA-256 seal!`, 'success');
+          } else {
+            throw new Error('Python worker HTTP ' + pyResp.status);
+          }
+        } catch (pyErr) {
+          console.warn('Python vision worker unavailable, falling back to local engine:', pyErr);
+          await API.simulateDetection({
+            plate_text: 'ABJ-904-XY',
+            plate_confidence: 0.962,
+            speed_kmh: 53,
+            red_elapsed_sec: 2.10,
+            vehicle_class: 'Sedan (Toyota Camry, Black)'
+          });
+          status.textContent = 'Batch complete! 1 Red-Light Infraction Detected (Local Pipeline)';
+          this.showToast('Footage analysis complete: Violation detected & queued for review!', 'success');
+        }
+
         this.refreshCounters();
-        this.showToast('Footage analysis complete: Violation detected & queued for review!', 'success');
       }
-    }, 200);
+    }, 150);
   },
 
   // --- VIEW 10: PILOT QUALITY & READINESS METRICS (Section 8 Requirement) ---
