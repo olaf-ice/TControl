@@ -16,9 +16,16 @@ if exist "%USERPROFILE%\.local\bin\uv.exe" (
     start "TControl AI Vision Worker" /min cmd /c "cd /d "%~dp0ai-service" && python main.py"
 )
 
-echo [*] Launching TControl Dashboard in your default web browser...
+echo [*] Launching TControl Desktop Application Window...
 ping 127.0.0.1 -n 3 >nul
-start http://localhost:3000
+
+if exist "%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe" (
+    start "" "%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe" --app=http://localhost:3000 --window-size=1600,920
+) else if exist "%ProgramFiles%\Google\Chrome\Application\chrome.exe" (
+    start "" "%ProgramFiles%\Google\Chrome\Application\chrome.exe" --app=http://localhost:3000 --window-size=1600,920
+) else (
+    start http://localhost:3000
+)
 
 echo.
 echo ==============================================================================
